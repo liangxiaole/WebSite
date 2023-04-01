@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.evan.wj.dao.UserDAO">
+
+    <resultMap id="BaseResultMap" type="com.evan.wj.pojo.User">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="salt" jdbcType="VARCHAR" property="salt" />
+    </resultMap>
+
+    <select id="SelByUserName" resultType="com.evan.wj.pojo.User">
+        select * from user where username = #{username}
+    </select>
+    <insert id="insert"  parameterType="com.evan.wj.pojo.User" useGeneratedKeys="true" keyProperty="id">
+        insert into user(
+        username,password,salt
+        )
+        values (
+        #{username},
+        #{password},
+        #{salt}
+        )
+    </insert>
+
+</mapper>
